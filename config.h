@@ -26,8 +26,8 @@ static const char *colors[][3]      = {
 /* tagging */
 #define TAGLENGTH 9
 static const char *tags[][TAGLENGTH] = {
-	{ "", "ﴣ", "3", "4", "", "6", "7", "8", "9" },
-	{ "ﭮ", "B", "C", "D", "E", "F", "G", "H", "I"},
+	{ "", "", "3", "4", "", "6", "7", "8", "9" },
+	{ "ﭮ", "", "C", "D", "E", "F", "G", "H", "I"},
 };
 
 static const Rule rules[] = {
@@ -37,7 +37,9 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "firefox",  "Navigator",       "Mozilla Firefox",       1 << 8,       0,           -1 },
+	{ "discord",  "discord",       "Discord",       1 ,       0,           1 },
+	{ "TelegramDesktop",  "telegram-desktop",       NULL,       1 << 1 ,       0,           1 }
 };
 
 /* layout(s) */

@@ -1,3 +1,4 @@
+#include <X11/XF86keysym.h>
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
@@ -93,6 +94,9 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *browsercmd[]  = { "brave", NULL };
+static const char *mutecmd[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+static const char *volupcmd[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
+static const char *voldowncmd[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
 
 static const char *lookingglasscmd[]  = { "looking-glass-client", "-s", "-m", "125", NULL};
 
@@ -102,6 +106,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_w, spawn,          {.v = browsercmd } },
 	{ MODKEY|ShiftMask,             XK_v, spawn,          {.v = lookingglasscmd } },
+	{ 0, XF86XK_AudioMute, spawn, {.v = mutecmd } },
+	{ 0, XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
+	{ 0, XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

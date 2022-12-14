@@ -34,7 +34,7 @@ static const char *colors[][3]      = {
 /* tagging */
 #define TAGLENGTH 9
 static const char *tags[][TAGLENGTH] = {
-	{ "", "", "3", "4", "", "6", "7", "8", "9" },
+	{ "", "", "戮", "4", "", "6", "7", "8", "9" },
 	{ "ﭮ", "", "C", "D", "E", "F", "G", "H", "I"},
 };
 
@@ -46,6 +46,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Brave-browser",  "brave-browser",       NULL,       1 << 1,       0,           -1 },
+	{ "Steam",  "Steam",       NULL,       1 << 2,       0,           -1 },
 	{ "looking-glass-client",  "Looking Glass (client)",       "Looking Glass (client)",       1 << 4,       0,           -1 },
 	{ "discord",  "discord",       "Discord",       1 ,       0,           1 },
 	{ "TelegramDesktop",  "telegram-desktop",       NULL,       1 << 1 ,       0,           1 }
@@ -94,6 +95,8 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *browsercmd[]  = { "brave", NULL };
+static const char *steamcmd[]  = { "steam", NULL };
+static const char *discordcmd[]  = { "discord", NULL };
 static const char *mutecmd[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
 static const char *volupcmd[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 static const char *voldowncmd[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
@@ -105,6 +108,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_w, spawn,          {.v = browsercmd } },
+	{ MODKEY,             XK_g, spawn,          {.v = steamcmd } },
+	{ MODKEY|ShiftMask,             XK_d, spawn,          {.v = discordcmd } },
 	{ MODKEY|ShiftMask,             XK_v, spawn,          {.v = lookingglasscmd } },
 	{ 0, XF86XK_AudioMute, spawn, {.v = mutecmd } },
 	{ 0, XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
